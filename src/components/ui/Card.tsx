@@ -1,7 +1,12 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-export const AppCard = props => {
+interface Props {
+  style: any;
+  children: React.ReactNode;
+}
+
+export const AppCard = (props: Props) => {
   return (
     <View style={{ ...styles.default, ...props.style }}>{props.children}</View>
   );

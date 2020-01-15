@@ -3,12 +3,22 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { theme } from "../theme";
 import AppCard from "../components/ui/Card";
 
-const TodoScreen = ({ goBack, task, deleteTask }) => {
+interface Props {
+  task: {
+    id: string;
+    title: string;
+  };
+
+  deleteTask: (id: string) => void;
+  goBack: () => void;
+}
+
+const TodoScreen = ({ goBack, task, deleteTask }: Props) => {
   return (
     <View>
       <AppCard style={style.card}>
         <Text style={style.title}>{task.title}</Text>
-        <Button title="Редактировать" />
+        <Button onPress={() => null} title="Редактировать" />
       </AppCard>
       <View style={style.buttons}>
         <View style={style.button}>

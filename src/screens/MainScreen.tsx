@@ -2,8 +2,16 @@ import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import Add from "../components/Add";
 import List from "../components/List";
+import { Methods } from "../../App";
 
-const MainScreen = ({ addTask, list, deleteTask, onTaskPress }) => {
+interface Props extends Methods {
+  list: {
+    id: string;
+    title: string;
+  }[];
+}
+
+const MainScreen = ({ addTask, list, deleteTask, onTaskPress }: Props) => {
   return (
     <View>
       <Add addTask={addTask} />
@@ -14,7 +22,7 @@ const MainScreen = ({ addTask, list, deleteTask, onTaskPress }) => {
           <List
             deleteTask={deleteTask}
             todo={item}
-            openTask={() => onTaskPress(item.id)}
+            onTaskPress={() => onTaskPress(item.id)}
           />
         )}
       />

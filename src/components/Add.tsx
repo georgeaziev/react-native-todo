@@ -2,7 +2,11 @@ import React from "react";
 import { View, TextInput, StyleSheet, Button, Alert } from "react-native";
 import { theme } from "../theme";
 
-const Add = ({ addTask }) => {
+interface Props {
+  addTask: (title: string) => void;
+}
+
+const Add = ({ addTask }: Props) => {
   const [task, setTask] = React.useState("");
 
   const pressHandler = () => {

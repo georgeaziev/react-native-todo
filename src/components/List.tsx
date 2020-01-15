@@ -1,11 +1,21 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Methods } from "../../App";
 
-const List = ({ todo, deleteTask, openTask }) => {
+interface Props extends Methods {
+  todo: {
+    id: string;
+    title: string;
+  };
+
+  onTaskPress: () => void;
+}
+
+const List = ({ todo, deleteTask, onTaskPress }: Props) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={openTask}
+      onPress={onTaskPress}
       onLongPress={() => deleteTask(todo.id)}
     >
       <View style={style.todo}>
