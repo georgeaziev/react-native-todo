@@ -1,0 +1,30 @@
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+
+const List = ({ todo, deleteTask, openTask }) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={0.5}
+      onPress={openTask}
+      onLongPress={() => deleteTask(todo.id)}
+    >
+      <View style={style.todo}>
+        <Text>{todo.title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const style = StyleSheet.create({
+  todo: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 15,
+    borderWidth: 1,
+    borderColor: "#eee",
+    borderRadius: 5,
+    marginBottom: 10
+  }
+});
+
+export default List;
