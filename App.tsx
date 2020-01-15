@@ -15,7 +15,7 @@ type List = { id: string; title: string };
 
 const App = () => {
   const [list, setList] = React.useState<List[]>([]);
-  const [taskId, setTaskId] = React.useState("2");
+  const [taskId, setTaskId] = React.useState<string>("");
 
   const addTask = (title: string) => {
     setList(prev => [
