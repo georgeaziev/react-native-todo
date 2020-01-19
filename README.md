@@ -1,3 +1,3 @@
-`Download "expo cli" app 
-npm start 
+`Download "expo cli" app \n
+npm start \n
 Scan QR-code`
