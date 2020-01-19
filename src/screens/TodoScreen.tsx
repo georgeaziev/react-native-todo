@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { theme } from "../theme";
 import AppCard from "../components/ui/Card";
+import EditModal from "../components/EditModal";
 
 interface Props {
   task: {
@@ -11,14 +12,28 @@ interface Props {
 
   deleteTask: (id: string) => void;
   goBack: () => void;
+  updateTask: (id: string, title: string) => void;
 }
 
-const TodoScreen = ({ goBack, task, deleteTask }: Props) => {
+const TodoScreen = ({ goBack, task, deleteTask, updateTask }: Props) => {
+  const [modal, setModal] = React.useState<boolean>(false);
+
+  const updateHandler = (title: string) => {
+    updateTask(task.id, title);
+    setModal(false);
+  };
+
   return (
     <View>
+      <EditModal
+        value={task.title}
+        visible={modal}
+        onCancel={() => setModal(false)}
+        updateTask={updateHandler}
+      />
       <AppCard style={style.card}>
         <Text style={style.title}>{task.title}</Text>
-        <Button onPress={() => null} title="Редактировать" />
+        <Button onPress={() => setModal(true)} title="Ред." />
       </AppCard>
       <View style={style.buttons}>
         <View style={style.button}>

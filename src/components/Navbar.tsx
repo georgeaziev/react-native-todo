@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { theme } from "../theme";
 
-const Navbar = ({ title }) => {
+const Navbar = ({ title }: any) => {
   return (
     <View style={style.navbar}>
       <Text style={style.text}>{title}</Text>

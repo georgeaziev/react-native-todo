@@ -49,6 +49,17 @@ const App = () => {
     );
   };
 
+  const updateTask = (id: string, title: string) => {
+    setList((prev: any) =>
+      prev.map((task: List) => {
+        if (task.id === id) {
+          task.title = title;
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <View>
       <Navbar title="Задачи" />
@@ -58,6 +69,7 @@ const App = () => {
             goBack={() => setTaskId(null)}
             task={list.find(task => task.id === taskId)}
             deleteTask={deleteTask}
+            updateTask={updateTask}
           />
         ) : (
           <MainScreen
