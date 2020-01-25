@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Methods } from "../../App";
+import AppFontRegular from "./ui/AppFonts";
 
 interface Props extends Methods {
   todo: {
@@ -19,7 +20,7 @@ const List = ({ todo, deleteTask, onTaskPress }: Props) => {
       onLongPress={() => deleteTask(todo.id)}
     >
       <View style={style.todo}>
-        <Text>{todo.title}</Text>
+        <AppFontRegular>{todo.title}</AppFontRegular>
       </View>
     </TouchableOpacity>
   );

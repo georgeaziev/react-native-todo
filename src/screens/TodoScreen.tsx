@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Button } from "react-native";
 import { theme } from "../theme";
 import AppCard from "../components/ui/Card";
 import EditModal from "../components/EditModal";
+import AppFontBold from "../components/ui/AppFontBold";
 
 interface Props {
   task: {
@@ -32,7 +33,7 @@ const TodoScreen = ({ goBack, task, deleteTask, updateTask }: Props) => {
         updateTask={updateHandler}
       />
       <AppCard style={style.card}>
-        <Text style={style.title}>{task.title}</Text>
+        <AppFontBold style={style.title}>{task.title}</AppFontBold>
         <Button onPress={() => setModal(true)} title="Ред." />
       </AppCard>
       <View style={style.buttons}>

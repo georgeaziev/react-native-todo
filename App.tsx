@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Alert, View } from "react-native";
+import * as Font from "expo-font";
+import { AppLoading } from "expo";
 import Navbar from "./src/components/Navbar";
 import MainScreen from "./src/screens/MainScreen";
 import TodoScreen from "./src/screens/TodoScreen";
@@ -13,9 +15,27 @@ export interface Methods {
 
 type List = { id: string; title: string };
 
+const loadApp = async () => {
+  await Font.loadAsync({
+    "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf")
+  });
+};
+
 const App = () => {
+  const [load, setLoad] = React.useState(false);
   const [list, setList] = React.useState<List[]>([]);
   const [taskId, setTaskId] = React.useState<string>("");
+
+  if (!load) {
+    return (
+      <AppLoading
+        startAsync={loadApp}
+        onError={err => console.log(err)}
+        onFinish={() => setLoad(true)}
+      />
+    );
+  }
 
   const addTask = (title: string) => {
     setList(prev => [
