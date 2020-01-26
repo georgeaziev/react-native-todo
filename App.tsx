@@ -5,6 +5,7 @@ import { AppLoading } from "expo";
 import Navbar from "./src/components/Navbar";
 import MainScreen from "./src/screens/MainScreen";
 import TodoScreen from "./src/screens/TodoScreen";
+import { theme } from "./src/theme";
 
 export interface Methods {
   addTask?: (title: string) => void;
@@ -106,7 +107,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 30,
+    paddingHorizontal: theme.padding_horizontal,
     paddingVertical: 20
   }
 });

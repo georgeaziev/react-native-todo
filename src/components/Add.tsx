@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert, Keyboard } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { theme } from "../theme";
 
@@ -14,8 +14,9 @@ const Add = ({ addTask }: Props) => {
     if (task.trim()) {
       setTask("");
       addTask(task);
+      Keyboard.dismiss();
     } else {
-      Alert.alert("Discombobulate and write text");
+      Alert.alert("Discombobulate");
     }
   };
 

@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Image, FlatList, StyleSheet } from "react-native";
+import { View, Image, FlatList, StyleSheet, Dimensions } from "react-native";
 import Add from "../components/Add";
 import List from "../components/List";
 import { Methods } from "../../App";
+import { theme } from "../theme";
 
 interface Props extends Methods {
   list: {
@@ -12,21 +13,41 @@ interface Props extends Methods {
 }
 
 const MainScreen = ({ addTask, list, deleteTask, onTaskPress }: Props) => {
+  const [deviceWidth, setDeviceWidth] = React.useState(
+    Dimensions.get("window").width - theme.padding_horizontal * 2
+  );
+
+  React.useEffect(() => {
+    const update = () => {
+      const width =
+        Dimensions.get("window").width - theme.padding_horizontal * 2;
+      setDeviceWidth(width);
+    };
+
+    Dimensions.addEventListener("change", update);
+
+    return () => {
+      Dimensions.removeEventListener("change", update);
+    };
+  });
+
   return (
-    <View>
+    <View style={{ width: deviceWidth }}>
       <Add addTask={addTask} />
       {list.length ? (
-        <FlatList
-          keyExtractor={item => item.id.toString()}
-          data={list}
-          renderItem={({ item }) => (
-            <List
-              deleteTask={deleteTask}
-              todo={item}
-              onTaskPress={() => onTaskPress(item.id)}
-            />
-          )}
-        />
+        <View>
+          <FlatList
+            keyExtractor={item => item.id.toString()}
+            data={list}
+            renderItem={({ item }) => (
+              <List
+                deleteTask={deleteTask}
+                todo={item}
+                onTaskPress={() => onTaskPress(item.id)}
+              />
+            )}
+          />
+        </View>
       ) : (
         <View>
           <Image
