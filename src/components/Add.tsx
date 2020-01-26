@@ -1,5 +1,6 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Button, Alert } from "react-native";
+import { View, TextInput, StyleSheet, Alert } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import { theme } from "../theme";
 
 interface Props {
@@ -26,7 +27,10 @@ const Add = ({ addTask }: Props) => {
         value={task}
         placeholder="Введите название задачи"
       />
-      <Button onPress={pressHandler} title="Добавить" />
+      <AntDesign.Button onPress={pressHandler} name="pluscircleo">
+        Добавить
+      </AntDesign.Button>
+      {/* <Button onPress={pressHandler} title="Добавить" /> */}
     </View>
   );
 };
@@ -39,7 +43,7 @@ const style = StyleSheet.create({
     marginBottom: 15
   },
   input: {
-    width: "70%",
+    width: "60%",
     padding: 10,
     borderStyle: "solid",
     borderBottomWidth: 2,

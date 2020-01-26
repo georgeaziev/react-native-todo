@@ -1,9 +1,16 @@
 import React from "react";
-import { View, StyleSheet, Button } from "react-native";
+import { View, StyleSheet } from "react-native";
+import {
+  FontAwesome,
+  AntDesign,
+  MaterialCommunityIcons
+} from "@expo/vector-icons";
+
 import { theme } from "../theme";
 import AppCard from "../components/ui/Card";
 import EditModal from "../components/EditModal";
 import AppFontBold from "../components/ui/AppFontBold";
+import AppButton from "../components/ui/AppButton";
 
 interface Props {
   task: {
@@ -34,18 +41,20 @@ const TodoScreen = ({ goBack, task, deleteTask, updateTask }: Props) => {
       />
       <AppCard style={style.card}>
         <AppFontBold style={style.title}>{task.title}</AppFontBold>
-        <Button onPress={() => setModal(true)} title="Ред." />
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name="edit" size={20} />
+        </AppButton>
       </AppCard>
       <View style={style.buttons}>
         <View style={style.button}>
-          <Button title="Назад" color={theme.grey} onPress={goBack} />
+          <AppButton color={theme.grey} onPress={goBack}>
+            <AntDesign name="back" size={20} color="#fff" />
+          </AppButton>
         </View>
         <View style={style.button}>
-          <Button
-            title="Удалить"
-            color={theme.red}
-            onPress={() => deleteTask(task.id)}
-          />
+          <AppButton color={theme.red} onPress={() => deleteTask(task.id)}>
+            <MaterialCommunityIcons name="delete-outline" size={20} />
+          </AppButton>
         </View>
       </View>
     </View>

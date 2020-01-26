@@ -8,6 +8,7 @@ import {
   Alert
 } from "react-native";
 import { theme } from "../theme";
+import AppButton from "./ui/AppButton";
 
 interface Props {
   visible: boolean;
@@ -31,8 +32,10 @@ const EditModal = ({ visible, onCancel, value, updateTask }: Props) => {
       <View style={style.wrap}>
         <TextInput style={style.input} value={title} onChangeText={setTitle} />
         <View style={style.buttons}>
-          <Button title="Отменить" onPress={onCancel} color={theme.red} />
-          <Button title="Сохранить" onPress={saveNewTitle} />
+          <AppButton onPress={onCancel} color={theme.red}>
+            Отменить
+          </AppButton>
+          <AppButton onPress={saveNewTitle}>Сохранить</AppButton>
         </View>
       </View>
     </Modal>
