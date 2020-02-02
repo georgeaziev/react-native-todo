@@ -17,6 +17,7 @@ interface Props {
   onCancel: () => void;
   updateTask: (title: string) => void;
 }
+
 const EditModal = ({ visible, onCancel, value, updateTask }: Props) => {
   const [title, setTitle] = React.useState(value);
 

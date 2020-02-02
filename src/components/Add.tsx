@@ -31,7 +31,6 @@ const Add = ({ addTask }: Props) => {
       <AntDesign.Button onPress={pressHandler} name="pluscircleo">
         Добавить
       </AntDesign.Button>
-      {/* <Button onPress={pressHandler} title="Добавить" /> */}
     </View>
   );
 };
