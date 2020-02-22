@@ -23,6 +23,7 @@ export const reducer = (state: State, action: Action) => {
         ]
       };
     case "DELETE_TODO":
+      console.log(action);
       return {
         ...state,
         list: state.list.filter(task => task.id !== action.id)

@@ -9,64 +9,22 @@ import { TodoContext } from "./context/todo/todoContext";
 export type List = { id: string; title: string };
 
 const MainLayout = () => {
-  //   const [list, setList] = React.useState<List[]>([]);
   const [taskId, setTaskId] = React.useState<string>("");
 
   const todoContext = React.useContext(TodoContext);
 
-  //   const addTask = (title: string) => {
-  //     setList(prev => [
-  //       ...prev,
-  //       {
-  //         id: Date.now().toString(),
-  //         title
-  //       }
-  //     ]);
-  //   };
+  const currentTask = todoContext.list.find(task => task.id === taskId);
 
-  //   const deleteTask = (id: string) => {
-  //     const selectedTask = list.find(t => t.id === id);
-  //     Alert.alert(
-  //       "Удаление задачи",
-  //       `Вы действительно хотите удалить "${selectedTask.title}"?`,
-  //       [
-  //         {
-  //           text: "Cancel",
-  //           style: "cancel"
-  //         },
-  //         {
-  //           text: "Удалить",
-  //           onPress: () => {
-  //             setTaskId(null);
-  //             setList(prev => prev.filter(todo => todo.id !== id));
-  //           }
-  //         }
-  //       ],
-  //       { cancelable: false }
-  //     );
-  //   };
-
-  //   const updateTask = (id: string, title: string) => {
-  //     setList((prev: any) =>
-  //       prev.map((task: List) => {
-  //         if (task.id === id) {
-  //           task.title = title;
-  //         }
-  //         return task;
-  //       })
-  //     );
-  //   };
-
-  console.log(taskId);
+  console.log(currentTask);
 
   return (
     <View>
       <Navbar title="Задачи" />
       <View style={styles.container}>
-        {taskId ? (
+        {currentTask ? (
           <TodoScreen
             goBack={() => setTaskId(null)}
-            task={todoContext.list.find(task => task.id === taskId)}
+            task={currentTask}
             deleteTask={todoContext.deleteTask}
             updateTask={todoContext.updateTask}
           />

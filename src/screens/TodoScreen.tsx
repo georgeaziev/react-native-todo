@@ -31,10 +31,12 @@ const TodoScreen = ({ goBack, task, deleteTask, updateTask }: Props) => {
     setModal(false);
   };
 
+  console.log(task);
+
   return (
     <View>
       <EditModal
-        value={task.title}
+        value={task.title && task.title}
         visible={modal}
         onCancel={() => setModal(false)}
         updateTask={updateHandler}
