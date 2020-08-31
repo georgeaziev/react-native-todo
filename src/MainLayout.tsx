@@ -9,43 +9,43 @@ import { TodoContext } from "./context/todo/todoContext";
 export type List = { id: string; title: string };
 
 const MainLayout = () => {
-  const [taskId, setTaskId] = React.useState<string>("");
+    const [taskId, setTaskId] = React.useState<string>("");
 
-  const todoContext = React.useContext(TodoContext);
+    const todoContext = React.useContext(TodoContext);
 
-  const currentTask = todoContext.list.find(task => task.id === taskId);
+    const currentTask = todoContext.list.find((task) => task.id === taskId);
 
-  console.log(currentTask);
+    console.log(currentTask);
 
-  return (
-    <View>
-      <Navbar title="Задачи" />
-      <View style={styles.container}>
-        {currentTask ? (
-          <TodoScreen
-            goBack={() => setTaskId(null)}
-            task={currentTask}
-            deleteTask={todoContext.deleteTask}
-            updateTask={todoContext.updateTask}
-          />
-        ) : (
-          <MainScreen
-            addTask={todoContext.addTask}
-            deleteTask={todoContext.deleteTask}
-            list={(todoContext as any).list}
-            onTaskPress={setTaskId}
-          />
-        )}
-      </View>
-    </View>
-  );
+    return (
+        <View>
+            <Navbar title="Задачи" />
+            <View style={styles.container}>
+                {currentTask ? (
+                    <TodoScreen
+                        goBack={() => setTaskId(null)}
+                        task={currentTask}
+                        deleteTask={todoContext.deleteTask}
+                        updateTask={todoContext.updateTask}
+                    />
+                ) : (
+                    <MainScreen
+                        addTask={todoContext.addTask}
+                        deleteTask={todoContext.deleteTask}
+                        list={todoContext.list}
+                        onTaskPress={setTaskId}
+                    />
+                )}
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: theme.padding_horizontal,
-    paddingVertical: 20
-  }
+    container: {
+        paddingHorizontal: theme.padding_horizontal,
+        paddingVertical: 20,
+    },
 });
 
 export default MainLayout;

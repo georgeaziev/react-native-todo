@@ -4,38 +4,31 @@ import React from "react";
 import TodoState from "./src/context/todo/TodoState";
 import MainLayout from "./src/MainLayout";
 
-export interface Methods {
-  addTask?: (title: string) => void;
-  deleteTask: (id: string) => void;
-  onTaskPress?: (id: string) => void;
-  goBack?: () => void;
-}
-
 const loadApp = async () => {
-  await Font.loadAsync({
-    "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf")
-  });
+    await Font.loadAsync({
+        "roboto-regular": require("./assets/fonts/Roboto-Regular.ttf"),
+        "roboto-bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    });
 };
 
 const App = () => {
-  const [load, setLoad] = React.useState(false);
+    const [load, setLoad] = React.useState(false);
 
-  if (!load) {
+    if (!load) {
+        return (
+            <AppLoading
+                startAsync={loadApp}
+                onError={(err) => console.log(err)}
+                onFinish={() => setLoad(true)}
+            />
+        );
+    }
+
     return (
-      <AppLoading
-        startAsync={loadApp}
-        onError={err => console.log(err)}
-        onFinish={() => setLoad(true)}
-      />
+        <TodoState>
+            <MainLayout />
+        </TodoState>
     );
-  }
-
-  return (
-    <TodoState>
-      <MainLayout />
-    </TodoState>
-  );
 };
 
 export default App;
